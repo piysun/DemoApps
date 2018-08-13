@@ -1,10 +1,14 @@
 var express = require('express');
-var mongoose = require('mongoose');
+const mongoose = require('mongoose')
+const AutoIncrement = require('mongoose-sequence')(mongoose);
 var bodyparser = require('body-parser');
 var cors = require('cors');
 var app = express();
+
 const route = require('./route/route');
 mongoose.connect('mongodb://localhost/demoApplication');
+
+
 
 //
 mongoose.connection.on('connected', () => {
@@ -24,7 +28,7 @@ app.use(bodyparser.json());
 
 //
 
-app.use('/api',route);
+app.use('/api', route);
 
 app.get('/', (req, res) => {
     res.send('some changess');
@@ -32,4 +36,8 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
     console.log("server start on ", + PORT);
-})
+});
+
+module.exports={
+    AutoIncrement:AutoIncrement
+}
