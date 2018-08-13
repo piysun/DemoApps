@@ -1,11 +1,7 @@
 var express = require('express');
 var router = express.Router();
 const Item = require('../shopinglist/shopinglist').Item;
-<<<<<<< HEAD
 const Counter = require('../shopinglist/shopinglist').Counter;
-=======
-const UserProfile = require('../shopinglist/shopinglist').UserProfile;
->>>>>>> 1d76704619a1b528cc8abad494d3a268e9009c06
 
 router.get('/testing_get_route', function (req, res, next) {
 

@@ -4,23 +4,13 @@ var AutoIncrement = require('../entry').AutoIncrement;
 
 const ShopingItemsScama = mongoose.Schema({
 
-    iteamName: {
-        type: String,
-        require: true
-    },
-    iteamQuantity: {
-        type: Number,
-        require: true
-    },
-    IteamBought: {
-        type: Boolean,
-        require: true
-    }
+    iteamName: { type: String, require: true },
+    iteamQuantity: { type: Number, require: true },
+    IteamBought: { type: Boolean, require: true }
 
 });
 
 var CounterSchema = mongoose.Schema({
-   
     seq: { type: String, default: 0 },
     uniceId: { type: String }
 });
