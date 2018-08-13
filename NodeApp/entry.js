@@ -1,27 +1,14 @@
 var express = require('express');
-const mongoose = require('mongoose')
-const AutoIncrement = require('mongoose-sequence')(mongoose);
+var mongoose = require('mongoose');
 var bodyparser = require('body-parser');
 var cors = require('cors');
 var app = express();
-<<<<<<< HEAD
-
-=======
-var autoIncrement = require('mongoose-auto-increment');
->>>>>>> 1d76704619a1b528cc8abad494d3a268e9009c06
 const route = require('./route/route');
+mongoose.connect('mongodb://localhost/demoApplication');
 
-<<<<<<< HEAD
-
-
-=======
-var connections = mongoose.connect('mongodb://localhost/demoApplication');
-
-autoIncrement.initialize(connections);
->>>>>>> 1d76704619a1b528cc8abad494d3a268e9009c06
 //
 mongoose.connection.on('connected', () => {
-    console.log("Database connected");
+    console.log("database connected");
 });
 
 mongoose.connection.on('error', () => {
@@ -37,7 +24,7 @@ app.use(bodyparser.json());
 
 //
 
-app.use('/api', route);
+app.use('/api',route);
 
 app.get('/', (req, res) => {
     res.send('some changess');
@@ -45,15 +32,4 @@ app.get('/', (req, res) => {
 
 app.listen(PORT, () => {
     console.log("server start on ", + PORT);
-<<<<<<< HEAD
 });
-
-module.exports={
-    AutoIncrement:AutoIncrement
-=======
-})
-
-module.exports = {
-    autoIncrement: autoIncrement
->>>>>>> 1d76704619a1b528cc8abad494d3a268e9009c06
-}
