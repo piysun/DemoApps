@@ -21,6 +21,10 @@
     "superlogin": "^0.6.1"
   },
   "dependencies": {
+<<<<<<< HEAD
     "mongoose-sequence": "^4.0.1"
+=======
+    "mongoose-auto-increment": "^5.0.1"
+>>>>>>> 1d76704619a1b528cc8abad494d3a268e9009c06
   }
 }

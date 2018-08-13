@@ -1,7 +1,11 @@
 var express = require('express');
 var router = express.Router();
 const Item = require('../shopinglist/shopinglist').Item;
+<<<<<<< HEAD
 const Counter = require('../shopinglist/shopinglist').Counter;
+=======
+const UserProfile = require('../shopinglist/shopinglist').UserProfile;
+>>>>>>> 1d76704619a1b528cc8abad494d3a268e9009c06
 
 router.get('/testing_get_route', function (req, res, next) {
 
@@ -78,4 +82,32 @@ router.post('/update_data/:id', (req, res, next) => {
 router.delete('/delete_data', (req, res, next) => {
 
 });
+
+router.post('/insertUser', (req, res, next) => {
+    let userProfile = new UserProfile({
+        userId: req.body.userId,
+        userName: req.body.userName,
+    });
+    userProfile.save((err, userProfile) => {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json({ mgs: ' Item Save' });
+        }
+    });
+});
+
+router.get('/allUserProfile', function (req, res, next) {
+
+    UserProfile.find(function (err, data) {
+        if (err) {
+            res.json(err)
+        }
+        else {
+            res.json(data)
+        }
+    });
+});
+
 module.exports = router;
