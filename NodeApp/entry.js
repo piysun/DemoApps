@@ -4,6 +4,7 @@ var bodyparser = require('body-parser');
 var cors = require('cors');
 var app = express();
 const route = require('./route/route');
+const mail = require('./mail/mail');
 mongoose.connect('mongodb://localhost/demoApplication');
 
 //
@@ -24,7 +25,7 @@ app.use(bodyparser.json());
 
 //
 
-app.use('/api',route);
+app.use('/api', route,mail);
 
 app.get('/', (req, res) => {
     res.send('some changess');
