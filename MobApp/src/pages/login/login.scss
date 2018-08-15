@@ -1,0 +1,37 @@
+page-login {
+.imageBg{
+    background-image :url('../../assets/imgs/BgImg.png');
+    background-repeat: no-repeat;
+   // background-color: aqua;
+    float: left;
+    position: relative;
+    margin-top: -53%;
+    margin-left: 13%;
+}
+
+.scroll-content{
+    align-content: center;
+    display: flex;
+     flex-direction: column;
+     justify-content: center;
+     text-align: center;
+}
+#content {
+    position: relative;
+}
+#content img {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+}
+.forgotP{
+    text-align: right;
+    padding: 3px 3px 24px
+}
+.formControl{
+    padding-top: 53%;
+}
+.btnText{
+    text-transform: none;
+}
+}
