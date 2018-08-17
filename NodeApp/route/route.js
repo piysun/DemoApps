@@ -5,7 +5,7 @@ const Counter = require('../shopinglist/shopinglist').Counter;
 
 router.get('/testing_get_route', function (req, res, next) {
 
-    Counter.find(function (err, items) {
+    Item.find(function (err, items) {
         if (err) {
             res.json(err)
         }
@@ -25,7 +25,9 @@ router.post('/insert_data', (req, res, next) => {
     });
     newShopingItem.save((err, item) => {
         if (err) {
-            res.json(err);
+            if (err.name === 'MongoError' && err.code === 11000) {
+                res.json({ mgs: ' Item Save........ '});
+            }
         }
         else {
             res.json({ mgs: ' Item Save' });
