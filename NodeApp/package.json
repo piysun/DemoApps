@@ -21,6 +21,10 @@
     "superlogin": "^0.6.1"
   },
   "dependencies": {
-    "nodemailer": "^4.6.7"
+    "express-validation": "^1.0.2",
+    "joi": "^13.6.0",
+    "nodemailer": "^4.6.7",
+    "password-hash": "^1.2.2",
+    "randomstring": "^1.1.5"
   }
 }
