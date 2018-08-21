@@ -27972,13 +27972,91 @@ ion-navbar.toolbar {
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
 
-page-login .imageBg {
+.imageBg {
   background-image: url("../../assets/imgs/BgImg.png");
   background-repeat: no-repeat;
   float: left;
   position: relative;
   margin-top: -53%;
   margin-left: 13%;
+}
+
+.scroll-content {
+  -webkit-align-content: center;
+  -ms-flex-line-pack: center;
+  align-content: center;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#content {
+  position: relative;
+}
+
+#content img {
+  position: fixed;
+  top: 0px;
+  right: 0px;
+  z-index: -1;
+}
+
+.forgotP {
+  text-align: right;
+  padding: 3px 3px 24px;
+}
+
+.formControl {
+  padding-top: 53%;
+}
+
+.btnText {
+  text-transform: none;
+}
+
+page-home ion-scroll[scrollX] {
+  margin-top: -100%;
+  white-space: nowrap;
+  height: 268px;
+  overflow: hidden;
+}
+
+page-home ion-scroll[scrollX] .scroll-item {
+  display: inline-block;
+}
+
+page-home .cardId {
+  margin-left: -13px;
+  width: 83%;
+  height: 58%;
+  border-radius: 16px;
+  margin-right: 25px;
+}
+
+page-home .card-M-T {
+  margin-top: 10px;
+}
+
+page-home .ImgCLass {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+}
+
+page-login .imageBg {
+  background-image: url("../../assets/imgs/BgImg.png");
+  background-repeat: no-repeat;
 }
 
 page-login .scroll-content {

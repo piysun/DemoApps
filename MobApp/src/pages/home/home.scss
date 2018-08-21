@@ -1,3 +1,28 @@
 page-home {
+      ion-scroll[scrollX] {
+        margin-top: -100%;
+        white-space: nowrap;
+        height: 268px;
+        overflow: hidden;
+    
+        .scroll-item {
+          display: inline-block;
+        }  
+      }
+    .cardId{
+        margin-left: -13px;
+        width: 83%;
+        height: 58%;
+        border-radius: 16px;
+        margin-right: 25px;
+    }
+    .card-M-T{
+        margin-top: 10px;
+    }
 
+    .ImgCLass{
+        position: absolute;
+        top: 0px;
+        right: 0px;
+    }
 }
