@@ -2,8 +2,9 @@ var Joi = require('joi');
 
 module.exports = {
   body: {
-  	companyId: Joi.string().required(), 
-    userName: Joi.string().required(),
-    password: Joi.string().required()
+    userFname: Joi.string().required(),
+    userLname: Joi.string().required(),
+    userEmail: Joi.string().required(),
+    userPassword: Joi.string().required()
   }
 }
