@@ -25726,9 +25726,7 @@ page-add-item .modal_content {
   margin: 0 auto;
   padding: 10px;
   color: #333;
-  background: #e8e8e8;
-  background: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e8e8e8));
-  background: linear-gradient(to bottom, #fff 0%, #e8e8e8 100%);
+  background: #ffffff;
   border-radius: 5px;
   -webkit-box-shadow: 0 2px 3px rgba(51, 51, 51, 0.35);
   box-shadow: 0 2px 3px rgba(51, 51, 51, 0.35);
@@ -25736,4 +25734,18 @@ page-add-item .modal_content {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   overflow: hidden;
+}
+
+page-add-item .ListTag {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+}
+
+page-add-item .list-md[inset] {
+  z-index: 0;
+}
+
+page-add-item .TopM {
+  margin-top: 25%;
 }

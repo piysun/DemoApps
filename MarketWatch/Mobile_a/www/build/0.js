@@ -46,6 +46,7 @@ var AddItemPageModule = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(40);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_network_network__ = __webpack_require__(102);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__angular_forms__ = __webpack_require__(15);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -58,6 +59,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 /**
  * Generated class for the AddItemPage page.
  *
@@ -65,13 +67,18 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * Ionic pages and navigation.
  */
 var AddItemPage = /** @class */ (function () {
-    function AddItemPage(navCtrl, viewCtrl, renderer, network, navParams) {
+    function AddItemPage(navCtrl, viewCtrl, renderer, formBuilder, network, navParams) {
         this.navCtrl = navCtrl;
         this.viewCtrl = viewCtrl;
         this.renderer = renderer;
+        this.formBuilder = formBuilder;
         this.network = network;
         this.navParams = navParams;
-        this.searchTerm = '';
+        this.itemData = this.formBuilder.group({
+            Symbol: [''],
+            title: ['', __WEBPACK_IMPORTED_MODULE_3__angular_forms__["f" /* Validators */].required],
+            description: [''],
+        });
         this.renderer.setElementClass(viewCtrl.pageRef().nativeElement, 'my-popup', true);
         console.log('UserId', navParams.get('userId'));
         this.setFilteredItems();
@@ -86,11 +93,17 @@ var AddItemPage = /** @class */ (function () {
     AddItemPage.prototype.dismiss = function () {
         this.viewCtrl.dismiss();
     };
+    // ngAfterViewInit(){
+    //   console.log("formData",this.itemData.value);
+    // }
     AddItemPage.prototype.setFilteredItems = function () {
         var _this = this;
-        if (this.searchTerm != '') {
-            this.network.loadSymbolList(this.searchTerm).then(function (s) {
-                //console.log(s);
+        console.log(this.itemData);
+        var data = this.itemData;
+        console.log(data.value);
+        if (this.itemData.value.Symbol != '') {
+            this.network.loadSymbolList(this.itemData.value.Symbol).then(function (s) {
+                console.log(s);
                 _this.items = s;
                 _this.showList = true;
             }).catch(function (err) {
@@ -101,14 +114,26 @@ var AddItemPage = /** @class */ (function () {
             this.showList = false;
         }
     };
+    AddItemPage.prototype.itemTapped = function (data) {
+        console.log(data);
+        this.itemData.value.Symbol = data;
+        console.log("this.itemData.value.Symbol", this.itemData.value.Symbol);
+        this.showList = false;
+    };
+    AddItemPage.prototype.resetData = function () {
+        //  this.itemData.reset();
+    };
+    AddItemPage.prototype.logForm = function () {
+        console.log(this.itemData.value);
+    };
     AddItemPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-add-item',template:/*ion-inline-start:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\BSE_Mobile\src\pages\add-item\add-item.html"*/'<ion-content class="main-view">\n  <div class="overlay" (click)="dismiss()"></div>\n  <div class="modal_content">\n    <h2>Welcome to Ionic!</h2>\n\n    <ion-searchbar [(ngModel)]="searchTerm" (ionInput)="setFilteredItems()"></ion-searchbar>\n\n    <ion-list *ngIf="showList">\n      <ion-item *ngFor="let item of items">\n        {{ item.SYMBOL }}        \n      </ion-item>\n    </ion-list>\n  </div>\n  <!--{{ item.NAME OF COMPANY }}  -->\n</ion-content>'/*ion-inline-end:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\BSE_Mobile\src\pages\add-item\add-item.html"*/,
+            selector: 'page-add-item',template:/*ion-inline-start:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\Mobile_a\src\pages\add-item\add-item.html"*/'<ion-content class="main-view">\n  <div class="overlay" (click)="dismiss()"></div>\n  <div class="modal_content">\n    <h2>Welcome to Ionic!</h2>\n    <form [formGroup]="itemData" (ngSubmit)="logForm()">\n      <ion-searchbar class="ionSerch" formControlName="Symbol" [(ngModel)]="itemData.value.Symbol" (ionInput)="setFilteredItems()"></ion-searchbar>\n      <ion-list *ngIf="showList" class="ListTag">\n        <ion-item *ngFor="let item of items" (click)="itemTapped(item.SYMBOL)">\n          {{ item.SYMBOL }}\n        </ion-item>\n      </ion-list>\n      <ion-list>\n        <ion-item>\n          <ion-label>Username</ion-label>\n          <ion-input type="text" formControlName="title"></ion-input>\n        </ion-item>\n        <ion-item>\n          <ion-label>Password</ion-label>\n          <ion-input type="text" formControlName="description" ></ion-input>\n        </ion-item>\n        <ion-grid class="TopM">\n          <ion-row>\n            <ion-col>\n              <button ion-button full color="danger" type="reset">Clear</button>\n            </ion-col>\n            <ion-col>\n              <button ion-button full color="secondary" type="submit" [disabled]="!itemData.valid">Submit</button>\n            </ion-col>\n          </ion-row>\n        </ion-grid>\n      </ion-list>\n    </form>\n  </div>\n</ion-content>'/*ion-inline-end:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\Mobile_a\src\pages\add-item\add-item.html"*/,
         }),
-        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* Renderer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* Renderer */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_2__providers_network_network__["a" /* NetworkProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_network_network__["a" /* NetworkProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _e || Object])
+        __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* ViewController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* Renderer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["V" /* Renderer */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__angular_forms__["a" /* FormBuilder */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_network_network__["a" /* NetworkProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_network_network__["a" /* NetworkProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* NavParams */]) === "function" && _f || Object])
     ], AddItemPage);
     return AddItemPage;
-    var _a, _b, _c, _d, _e;
+    var _a, _b, _c, _d, _e, _f;
 }());
 
 //# sourceMappingURL=add-item.js.map

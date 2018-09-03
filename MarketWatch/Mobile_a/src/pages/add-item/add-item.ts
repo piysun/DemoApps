@@ -1,6 +1,7 @@
 import { Component, Renderer } from '@angular/core';
 import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angular';
 import { NetworkProvider } from '../../providers/network/network';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 /**
  * Generated class for the AddItemPage page.
@@ -15,19 +16,27 @@ import { NetworkProvider } from '../../providers/network/network';
   templateUrl: 'add-item.html',
 })
 export class AddItemPage {
-  searchTerm: string = '';
+
   items: any;
   Symbol_List: {};
   showList: boolean;
+  dataV: any;
+  itemData = this.formBuilder.group({
+    Symbol: [''],
+    title: ['', Validators.required],
+    description: [''],
+  });
 
   constructor(public navCtrl: NavController,
     public viewCtrl: ViewController,
     public renderer: Renderer,
+    private formBuilder: FormBuilder,
     public network: NetworkProvider,
     public navParams: NavParams) {
     this.renderer.setElementClass(viewCtrl.pageRef().nativeElement, 'my-popup', true);
     console.log('UserId', navParams.get('userId'));
     this.setFilteredItems();
+
   }
 
   ionViewDidLoad() {
@@ -40,11 +49,16 @@ export class AddItemPage {
   dismiss() {
     this.viewCtrl.dismiss();
   }
+  // ngAfterViewInit(){
+  //   console.log("formData",this.itemData.value);
+  // }
   setFilteredItems() {
-
-    if (this.searchTerm != '') {
-      this.network.loadSymbolList(this.searchTerm).then(s => {
-        //console.log(s);
+    console.log(this.itemData);
+    let data = this.itemData;
+    console.log(data.value);
+    if (this.itemData.value.Symbol != '') {
+      this.network.loadSymbolList(this.itemData.value.Symbol).then(s => {
+        console.log(s);
         this.items = s;
         this.showList = true;
       }).catch(err => {
@@ -55,5 +69,20 @@ export class AddItemPage {
       this.showList = false;
     }
 
+  }
+  itemTapped(data) {
+    console.log(data);
+    this.itemData.value.Symbol = data;
+    console.log("this.itemData.value.Symbol",this.itemData.value.Symbol);
+    this.showList = false;
+  }
+
+  resetData(): void {
+    //  this.itemData.reset();
+
+  }
+
+  logForm() {
+    console.log(this.itemData.value);
   }
 }

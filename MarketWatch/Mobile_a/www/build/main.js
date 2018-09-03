@@ -34,44 +34,33 @@ var NetworkProvider = /** @class */ (function () {
         console.log('Hello NetworkProvider Provider');
     }
     NetworkProvider.prototype.getAllDevices = function () {
-        var _this = this;
-        var headersObj = new __WEBPACK_IMPORTED_MODULE_0__angular_common_http__["c" /* HttpHeaders */]();
-        headersObj.append('Content-Type', 'application/json');
-        var url = this.baseUrl;
-        return new Promise(function (resolve, reject) {
-            _this.http.get(url).map(function (data) {
-                var Listarry = [];
-                data.data.forEach(function (element) {
-                    Listarry.push(element.symbol);
-                });
-                resolve(Listarry);
-            }).subscribe(function (resp) {
-                resolve();
-            }), function (err) {
-                console.log("--------------------/", err);
-            };
-        });
+        // let headersObj = new HttpHeaders();
+        // headersObj.append('Content-Type', 'application/json');
+        // let url = this.baseUrl;
+        // return new Promise((resolve, reject) => {
+        //   this.http.get(url).map(data => {
+        //     var Listarry = [];
+        //     data.data.forEach(element => {
+        //       Listarry.push(element.symbol);
+        //     });
+        //     resolve(Listarry);
+        //   }).subscribe(resp => {
+        //     resolve();
+        //   }), (err) => {
+        //     console.log("--------------------/", err);
+        //   }
+        // });
     };
     NetworkProvider.prototype.loadSymbolList = function (searchTerm) {
         var _this = this;
-        this.items = [
-            { title: 'one' },
-            { title: 'two' },
-            { title: 'three' },
-            { title: 'four' },
-            { title: 'five' },
-            { title: 'six' }
-        ];
         return new Promise(function (resolve, reject) {
             _this.http.get('assets/data/symbolList.json').map(function (data) {
-                console.log('data--->', data);
+                // console.log('data--->', data);
                 _this.data = data;
                 console.log('searchTerm', searchTerm);
                 var datas = _this.data.filter(function (location) {
-                    // console.log("Ky BAt hai", this.data);
                     return location.SYMBOL.toLowerCase().indexOf(searchTerm.toLowerCase()) > -1;
                 });
-                console.log('..........,<', datas);
                 resolve(datas);
             }).subscribe(function (resp) {
             }), function (err) {
@@ -126,7 +115,7 @@ var HomePage = /** @class */ (function () {
     };
     HomePage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-home',template:/*ion-inline-start:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\BSE_Mobile\src\pages\home\home.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="openModal()">\n        <ion-icon name="options"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>'/*ion-inline-end:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\BSE_Mobile\src\pages\home\home.html"*/,
+            selector: 'page-home',template:/*ion-inline-start:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\Mobile_a\src\pages\home\home.html"*/'\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>Home</ion-title>\n    <ion-buttons end>\n      <button ion-button icon-only (click)="openModal()">\n        <ion-icon name="options"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n\n</ion-content>'/*ion-inline-end:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\Mobile_a\src\pages\home\home.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* ModalController */],
@@ -242,7 +231,7 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({
-            selector: 'page-login',template:/*ion-inline-start:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\BSE_Mobile\src\pages\login\login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>login</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <button ion-button color="danger" (click)="login()">Danger</button>\n</ion-content>\n'/*ion-inline-end:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\BSE_Mobile\src\pages\login\login.html"*/,
+            selector: 'page-login',template:/*ion-inline-start:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\Mobile_a\src\pages\login\login.html"*/'<!--\n  Generated template for the LoginPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar>\n    <ion-title>login</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <button ion-button color="danger" (click)="login()">Danger</button>\n</ion-content>\n'/*ion-inline-end:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\Mobile_a\src\pages\login\login.html"*/,
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* NavController */],
             __WEBPACK_IMPORTED_MODULE_2__ionic_native_google_plus__["a" /* GooglePlus */],
@@ -387,7 +376,7 @@ var MyApp = /** @class */ (function () {
         });
     }
     MyApp = __decorate([
-        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\BSE_Mobile\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\BSE_Mobile\src\app\app.html"*/
+        Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["m" /* Component */])({template:/*ion-inline-start:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\Mobile_a\src\app\app.html"*/'<ion-nav [root]="rootPage"></ion-nav>\n'/*ion-inline-end:"D:\KPIT\poc\AWS\DemoApps\MarketWatch\Mobile_a\src\app\app.html"*/
         }),
         __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
     ], MyApp);
