@@ -1,16 +1,16 @@
 var express = require('express');
 var router = express.Router();
-const MarketWatch = require('../addItem/addRecord').MarketWatch;
+const marketWatchUserInfoSchema = require('../addItem/addRecord').marketWatchUserInfoSchema;
 
 router.post('/insert_list', (req, res, next) => {
 
-    let marketWatchInsert = new MarketWatch({
+    let marketWatchUserInfoSchemaInsert = new marketWatchUserInfoSchema({
         stockID: req.body.stockID,
         stockName: req.body.stockName,
         stockByePrice: req.body.stockByePrice,
         stockTargetPrice: req.body.stockTargetPrice
     });
-    marketWatchInsert.save((err, item) => {
+    marketWatchUserInfoSchemaInsert.save((err, item) => {
         if (err) {
 
             res.json(err);
