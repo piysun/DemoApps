@@ -1,0 +1,32 @@
+
+C:\Program Files\Java\jdk1.8.0_91\bin>keytool -list -v -keystore C:\Users\PeEyUsH\.android\debug.keystore -alias androiddebugkey -storepass android -keypass android
+Alias name: androiddebugkey
+Creation date: 17 May, 2016
+Entry type: PrivateKeyEntry
+Certificate chain length: 1
+Certificate[1]:
+Owner: CN=Android Debug, O=Android, C=US
+Issuer: CN=Android Debug, O=Android, C=US
+Serial number: 77364fa7
+Valid from: Tue May 17 23:08:46 IST 2016 until: Thu May 10 23:08:46 IST 2046
+Certificate fingerprints:
+         MD5:  9B:F2:4E:1F:8B:C2:99:82:56:33:E9:19:CF:0F:D2:F7
+         SHA1: 60:C6:D5:D6:59:3A:48:E0:92:18:EF:DE:B8:28:E8:BB:4E:3A:CC:14
+         SHA256: F7:2B:A0:8E:90:CF:41:FA:FF:66:A3:9C:D9:6E:30:81:93:71:75:6E:27:77:54:E6:85:5E:35:04:6B:A2:C0:ED
+         Signature algorithm name: SHA256withRSA
+         Version: 3
+
+Extensions:
+
+#1: ObjectId: 2.5.29.14 Criticality=false
+SubjectKeyIdentifier [
+KeyIdentifier [
+0000: C5 33 38 CF 0A AB 5A 38   4B E5 C7 C6 41 6E DE 6D  .38...Z8K...An.m
+0010: 73 B8 D4 40                                        s..@
+]
+]
+
+
+C:\Program Files\Java\jdk1.8.0_91\bin>
+
+C:\Program Files\Java\jdk1.8.0_91\bin>

@@ -39,6 +39,14 @@
     "is_top_level": true,
     "variables": {}
   },
+  "cordova-sqlite-storage": {
+    "source": {
+      "type": "registry",
+      "id": "cordova-sqlite-storage"
+    },
+    "is_top_level": true,
+    "variables": {}
+  },
   "cordova-plugin-googleplus": {
     "source": {
       "type": "registry",
@@ -48,13 +56,5 @@
     "variables": {
       "REVERSED_CLIENT_ID": "55845666138-2qkbmb2stctmfpm66o6s2m0883m2sptf.apps.googleusercontent.com"
     }
-  },
-  "cordova-sqlite-storage": {
-    "source": {
-      "type": "registry",
-      "id": "cordova-sqlite-storage"
-    },
-    "is_top_level": true,
-    "variables": {}
   }
 }

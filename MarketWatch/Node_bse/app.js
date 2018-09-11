@@ -20,7 +20,7 @@ mongoose.connection.on('error', () => {
 
 const PORT = 3000;
 
-//app.use(cors());
+app.use(cors());
 
 //
 app.use(bodyparser.json());

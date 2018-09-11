@@ -169,8 +169,8 @@ public final class R {
      * @see #LoadingImageView_imageAspectRatioAdjust
      */
     public static final int[] LoadingImageView={
-      0x7f010001, 0x7f010003, 0x7f010004
-    };
+        0x7f010001, 0x7f010003, 0x7f010004
+      };
     /**
      * <p>This symbol is the offset where the {@link com.bse.demoapp.R.attr#circleCrop}
      * attribute's value can be found in the {@link #LoadingImageView} array.
@@ -224,8 +224,8 @@ public final class R {
      * @see #SignInButton_scopeUris
      */
     public static final int[] SignInButton={
-      0x7f010000, 0x7f010002, 0x7f010005
-    };
+        0x7f010000, 0x7f010002, 0x7f010005
+      };
     /**
      * <p>This symbol is the offset where the {@link com.bse.demoapp.R.attr#buttonSize}
      * attribute's value can be found in the {@link #SignInButton} array.

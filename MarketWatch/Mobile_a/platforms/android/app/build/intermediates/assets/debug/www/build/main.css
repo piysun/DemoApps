@@ -25677,3 +25677,119 @@ ion-navbar.toolbar {
   min-height: calc(46px + constant(safe-area-inset-bottom));
   min-height: calc(46px + env(safe-area-inset-bottom));
 }
+
+modal-wrapper {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+
+@media not all and (min-height: 600px) and (min-width: 768px) {
+  ion-modal ion-backdrop {
+    visibility: hidden;
+  }
+}
+
+@media only screen and (min-height: 0px) and (min-width: 0px) {
+  .modal-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+  @font-face {
+    font-family: Oswald;
+    src: url("../assets/Oswald/Oswald-Medium.ttf") format("woff2");
+  }
+  * {
+    font-family: Oswalds;
+  }
+}
+
+page-add-item .main-view {
+  background: transparent;
+}
+
+page-add-item .overlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  opacity: .5;
+  background-color: #333;
+}
+
+page-add-item .modal_content {
+  position: absolute;
+  top: calc(40% - (50%/2));
+  left: 0;
+  right: 0;
+  width: 90%;
+  height: 60%;
+  padding: 10px;
+  z-index: 100;
+  margin: 0 auto;
+  padding: 10px;
+  color: #333;
+  background: #ffffff;
+  border-radius: 5px;
+  -webkit-box-shadow: 0 2px 3px rgba(51, 51, 51, 0.35);
+  box-shadow: 0 2px 3px rgba(51, 51, 51, 0.35);
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  overflow: hidden;
+}
+
+page-add-item .ListTag {
+  position: absolute;
+  z-index: 999;
+  width: 100%;
+}
+
+page-add-item .list-md[inset] {
+  z-index: 0;
+}
+
+page-add-item .TopM {
+  margin-top: 25%;
+}
+
+page-home .BgImage {
+  background-image: url("../../assets/imgs/9634.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 375px 450px;
+  background-color: #fff;
+}
+
+page-home .Bg {
+  z-index: -1;
+  position: relative;
+}
+
+page-home .borderLeft {
+  border-left: 1px solid gray;
+  padding-left: 12px;
+}
+
+page-home .FontStyle {
+  font-family: 'Oswalds';
+  font-family: Oswalds;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+page-home .Mtop {
+  margin-top: -19px !important;
+}
+
+page-login .BgImage {
+  background-image: url("../../assets/imgs/9634.jpg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: 375px 450px;
+  background-color: #fff;
+}

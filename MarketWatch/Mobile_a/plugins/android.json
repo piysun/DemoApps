@@ -7,23 +7,23 @@
     "files": {}
   },
   "installed_plugins": {
-    "cordova-plugin-whitelist": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
     "cordova-plugin-device": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-splashscreen": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-ionic-webview": {
-      "PACKAGE_NAME": "io.ionic.starter"
-    },
-    "cordova-plugin-ionic-keyboard": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.bse.demoapp"
     },
     "cordova-plugin-googleplus": {
-      "PACKAGE_NAME": "io.ionic.starter"
+      "PACKAGE_NAME": "com.bse.demoapp"
+    },
+    "cordova-plugin-ionic-keyboard": {
+      "PACKAGE_NAME": "com.bse.demoapp"
+    },
+    "cordova-plugin-ionic-webview": {
+      "PACKAGE_NAME": "com.bse.demoapp"
+    },
+    "cordova-plugin-splashscreen": {
+      "PACKAGE_NAME": "com.bse.demoapp"
+    },
+    "cordova-plugin-whitelist": {
+      "PACKAGE_NAME": "com.bse.demoapp"
     },
     "cordova-sqlite-storage": {
       "PACKAGE_NAME": "com.bse.demoapp"
