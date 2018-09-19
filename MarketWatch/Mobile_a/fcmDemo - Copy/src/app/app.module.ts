@@ -16,6 +16,7 @@ import { AngularFireModule } from 'angularfire2'
 import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
 import { FIREBASE_CONFIG } from './firebaseconfg';
 import { AngularFireAuth } from 'angularfire2/auth';
+import { GooglePlus } from '@ionic-native/google-plus';
 @NgModule({
   declarations: [
     MyApp,
@@ -40,6 +41,7 @@ import { AngularFireAuth } from 'angularfire2/auth';
   providers: [
     StatusBar,
     SplashScreen,
+    GooglePlus,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     NetworkProvider,
     AngularFireDatabase,

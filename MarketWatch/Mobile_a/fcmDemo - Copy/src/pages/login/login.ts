@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-// import { GooglePlus } from '@ionic-native/google-plus';
+import { GooglePlus } from '@ionic-native/google-plus';
 import { AngularFireAuth } from 'angularfire2/auth';
 import { Storage } from '@ionic/storage';
 import { HomePage } from '../home/home';
@@ -23,7 +23,7 @@ export class LoginPage {
   private user: Observable<firebase.User>;
 
   constructor(public navCtrl: NavController,
-    // private googlePlus: GooglePlus,
+    private googlePlus: GooglePlus,
     private _firebaseAuth: AngularFireAuth,
     private storage: Storage,
     // private router: Router,
@@ -37,9 +37,9 @@ export class LoginPage {
   }
   Login() {
     console.log("Login G");
-    // this.googlePlus.login({})
-    //   .then(res => console.log("resP", res))
-    //   .catch(err => console.error("err", err));
+    this.googlePlus.login({})
+      .then(res => console.log("resP", res))
+      .catch(err => console.error("err", err));
 
     // signInWithGoogle() {
     // this._firebaseAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
