@@ -3,7 +3,7 @@ var _ = require('lodash');
 var request = require("request");
 var router = express.Router();
 const marketWatchUserInfo = require('../addItem/addRecord').marketWatchUserInfo;
-const User_InfoTB = require('../addItem/addRecord').User_InfoTB;
+const marketWatchUserlist = require('../addItem/addRecord').marketWatchStockList;
 var url = "https://www.nseindia.com/live_market/dynaContent/live_watch/stock_watch/foSecStockWatch.json"
 var q = require("q");
 
@@ -35,11 +35,11 @@ var getStockData = function () {
         //for checking if error or success
         if (!error) {
 
-          //  console.log("Success in https call.");
+            console.log("Success in https call.");
             deferred.resolve(response.body); //sending response
         } else {
 
-        //    console.log("Error while https call: " + JSON.stringify(error));
+            console.log("Error while https call: " + JSON.stringify(error));
             deferred.reject(error); //sending error
         } //end of if...else condition checking for error        
     }); //end of request call
@@ -65,7 +65,7 @@ var sendEmail = async function () {
             if (!triggerObj.targetHit) {
 
                 var result = _.filter(nseData.data, function (obj) {
-                  //  console.log("***", obj);
+                    console.log("***", obj);
 
                     if (triggerObj.symbol == obj.symbol && obj.ltP >= triggerObj.trigger) {
 
@@ -85,7 +85,7 @@ var sendEmail = async function () {
         }); //end of forEach loop
     } catch (error) {
 
-      //  console.log("Failed while retrieving data from NSE.", error);
+        console.log("Failed while retrieving data from NSE.", error);
     } //end of try...catch block
 
     setTimeout(sendEmail, 10 * 1000);
@@ -110,25 +110,17 @@ router.post('/insert_UserDetails', (req, res, next) => {
     });
     User_InfoTBInsert.save((err, item) => {
         if (err) {
+
             res.json(err);
+
         }
         else {
             res.json({ mgs: ' Item Save' });
-        }
-    });
-});
-router.get('/testing_get_route', function (req, res, next) {
-
-    User_InfoTB.find(function (err, items) {
-        if (err) {
-            res.json(err)
-        }
-        else {
-            res.json(items)
 
         }
     });
 });
+
 
 module.exports = router;
 

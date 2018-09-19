@@ -1,8 +1,0 @@
-{
-  "name": "BSE_Mobile",
-  "app_id": "",
-  "type": "ionic-angular",
-  "integrations": {
-    "cordova": {}
-  }
-}

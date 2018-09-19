@@ -18,7 +18,7 @@ mongoose.connection.on('error', () => {
     console.log("database error");
 });
 
-const PORT = 3000;
+const PORT = 3100;
 
 app.use(cors());
 
