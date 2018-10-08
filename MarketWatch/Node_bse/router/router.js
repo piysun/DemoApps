@@ -1,12 +1,12 @@
 var express = require('express');
 var _ = require('lodash');
 var request = require("request");
+var randomString = require("randomstring");
 var router = express.Router();
 const marketWatchUserInfo = require('../addItem/addRecord').marketWatchUserInfo;
 
 const User_InfoTB = require('../addItem/addRecord').User_InfoTB;
-
-
+const Stock_InfoTB = require('../addItem/addRecord').Stock_InfoTB;
 var url = "https://www.nseindia.com/live_market/dynaContent/live_watch/stock_watch/foSecStockWatch.json"
 var q = require("q");
 
@@ -96,8 +96,6 @@ var sendEmail = async function () {
 }
 setTimeout(sendEmail, 10 * 1000);
 
-
-
 // Insert Record in UserInfo Table
 router.post('/insert_UserDetails', (req, res, next) => {
     //below logic will generate random userId
@@ -112,24 +110,76 @@ router.post('/insert_UserDetails', (req, res, next) => {
         user_Email: req.body.user_Email,
         user_Token: req.body.user_Token
     });
+    var query = {
+        'user_Email': req.body.user_Email
+    }; //end of query object 
     User_InfoTBInsert.save((err, item) => {
+        if (err) {
+            //res.json(err);  
+
+            User_InfoTB.find(query, function (err, ReturnData) {
+                if (err) {
+                    res.json(err);
+                }
+                else {
+                    res.json({ userId: ReturnData[0].user_Id })
+                }
+            });
+        }
+        else {
+            res.json({ userId: item.user_Id });
+        }
+    });
+});
+
+router.post('/getDataByUserid', (req, res, next) => {
+    var query = {
+        user_Id: req.body.user_Id
+    }
+    Stock_InfoTB.find(query, function (err, items) {
         if (err) {
             res.json(err);
         }
         else {
-            res.json({ mgs: ' Item Save' });
+            res.json(items)
+        }
+    })
+})
+
+router.post('/insertStockRecord', (req, res, next) => {
+    let Stock_Record = new Stock_InfoTB({
+        user_Id: req.body.user_Id,
+        stock_Symbol: req.body.stock_Symbol,
+        stock_BuyPrice: req.body.stock_BuyPrice,
+        stock_TargetPrice: req.body.stock_TargetPrice,
+        stock_High: req.body.stock_High,
+        stock_Low: req.body.stock_Low,
+        stock_PushMail: req.body.stock_PushMail,
+        stock_Profit: req.body.stock_Profit,
+        stock_Sell: req.body.stock_Sell,
+
+    });
+    Stock_Record.save((err, resopnce) => {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(resopnce);
         }
     });
-});
+})
+
 router.get('/testing_get_route', function (req, res, next) {
 
     User_InfoTB.find(function (err, items) {
         if (err) {
-            res.json(err)
+            res.json(err);
+
         }
         else {
             res.json(items)
         }
     });
 });
+
 module.exports = router;
