@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 
 const User_Info = mongoose.Schema({
 
-    user_Id: { type: String, require: true, default: 0, index: { unique: true } },
-    user_Name: { type: String, require: true },
-    user_Email: { type: String, require: true },
+    user_Id: { type: String, required: true, default: 0, unique: true },
+    user_Name: { type: String, required: true },
+    user_Email: { type: String, required: true, unique: true },
     user_Token: { type: String }
 
 });
@@ -30,4 +30,3 @@ module.exports = {
     Stock_InfoTB: Stock_InfoTB
 
 }
-
