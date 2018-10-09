@@ -9,6 +9,7 @@ const User_InfoTB = require('../addItem/addRecord').User_InfoTB;
 const Stock_InfoTB = require('../addItem/addRecord').Stock_InfoTB;
 var url = "https://www.nseindia.com/live_market/dynaContent/live_watch/stock_watch/foSecStockWatch.json"
 var q = require("q");
+var mail = require('../mail/mail');
 
 router.post('/insert_list', (req, res, next) => {
 
@@ -51,50 +52,100 @@ var getStockData = function () {
     return deferred.promise;
 }
 
-var sendEmail = async function () {
-
+/* Below function will get NSE data.
+ * After getting data from NSE it will fetch records from target data.
+ * It will then match for target.
+ * If target is achieved then it will send mail.
+ */
+var checkTarget = async function () {
+    console.log("1");
     try {
 
+        //Getting NSE data
         var nseData = await getStockData();
-        var triggerObject = [{ "symbol": "RECLTD", "trigger": 116.95, "targetHit": false }, { "symbol": "infy", "trigger": 700, "targetHit": true }];
-        // setTimeout(function () {
+
+        //Parsing data to JSON
         nseData = JSON.parse(nseData);
 
-        // }, 1000)
+        nseData.data.forEach(async function (stockObject) {
 
-        // var nseData = [{ "symbol": "tcs", currentRate: 1000 }, { "symbol": "infy", currentRate: 680 }, { "symbol": "pcj", currentRate: 100 }];
+            var queryObject = {
+                'stock_Symbol': stockObject.symbol,
+                'stock_PushMail': false
+            }; //end of query object
 
-        triggerObject.forEach(function (triggerObj, index) {
+            var targetRecords = await Stock_InfoTB.find(queryObject);
 
-            if (!triggerObj.targetHit) {
+            //Below loop will check for the target hit or not
+            targetRecords.forEach(async function (targetRecordObject) {
 
-                var result = _.filter(nseData.data, function (obj) {
-                    //  console.log("***", obj);
+                 console.log("targetRecordObject.stock_TargetPrice: " + targetRecordObject);
+                // console.log("stockObject.ltP: " + stockObject.ltP);
+                if (targetRecordObject.stock_TargetPrice <= stockObject.ltP) {
+                    console.log("true fun");
+                    var UserQuery = {
+                        'user_Id': targetRecordObject.user_Id
+                    }; //end of query oject for user Datails
+                    var getUserDeatail = await User_InfoTB.find(UserQuery);
 
-                    if (triggerObj.symbol == obj.symbol && obj.ltP >= triggerObj.trigger) {
-
-                        return obj;
-                    } //end of if condition
-                }); //end of lodash filter
-
-                //for checking if trigger is hit
-                if (result.length > 0) {
-
-                    //remove object from triggerObject
-                    triggerObject[index].targetHit = true;
-
-                    //send mail for trigger hit
-                }
-            } //end of triggerObj.targetHit checking if condition
-        }); //end of forEach loop
+                    //send mail using userID, symbol, ltp
+                    mail.sendNotificationMail(getUserDeatail, targetRecordObject.stock_Symbol, stockObject.ltP);
+                    //set PushMail to true update
+                } //end of if condition checking for target hit or not
+            }); //end of forEach loop iterating for targetRecords
+        }); //end of forEach loop iterating for NSE data.
     } catch (error) {
-
-        //  console.log("Failed while retrieving data from NSE.", error);
+        console.log("error", error);
     } //end of try...catch block
+    setTimeout(checkTarget, 10 * 1000);
+    // }
+    // 
+} //end of checkTarget function
+setTimeout(checkTarget, 10 * 1000);
+// var checkTrigger = async function () {
 
-    setTimeout(sendEmail, 10 * 1000);
-}
-setTimeout(sendEmail, 10 * 1000);
+//     try {
+
+//         var nseData = await getStockData();
+//         var triggerObject = [{ "symbol": "RECLTD", "trigger": 116.95, "targetHit": false }, { "symbol": "infy", "trigger": 700, "targetHit": true }];
+//         // setTimeout(function () {
+//         nseData = JSON.parse(nseData);
+
+//         // }, 1000)
+
+//         // var nseData = [{ "symbol": "tcs", currentRate: 1000 }, { "symbol": "infy", currentRate: 680 }, { "symbol": "pcj", currentRate: 100 }];
+
+//         triggerObject.forEach(function (triggerObj, index) {
+
+//             if (!triggerObj.targetHit) {
+
+//                 var result = _.filter(nseData.data, function (obj) {
+//                     //  console.log("***", obj);
+
+//                     if (triggerObj.symbol == obj.symbol && obj.ltP >= triggerObj.trigger) {
+
+//                         return obj;
+//                     } //end of if condition
+//                 }); //end of lodash filter
+
+//                 //for checking if trigger is hit
+//                 if (result.length > 0) {
+
+//                     //remove object from triggerObject
+//                     triggerObject[index].targetHit = true;
+
+//                     //send mail for trigger hit
+//                 }
+//             } //end of triggerObj.targetHit checking if condition
+//         }); //end of forEach loop
+//     } catch (error) {
+
+//         //  console.log("Failed while retrieving data from NSE.", error);
+//     } //end of try...catch block
+
+//     setTimeout(sendEmail, 10 * 1000);
+// }
+// setTimeout(sendEmail, 10 * 1000);
 
 // Insert Record in UserInfo Table
 router.post('/insert_UserDetails', (req, res, next) => {
@@ -182,4 +233,19 @@ router.get('/testing_get_route', function (req, res, next) {
     });
 });
 
+var getUserDeatail = async function (user_Id) {
+    var query = {
+        user_Id: req.body.user_Id
+    }
+    Stock_InfoTB.find(query, function (err, items) {
+        if (err) {
+            res.json(err);
+        }
+        else {
+            res.json(items);
+            return items;
+        }
+    })
+
+}
 module.exports = router;

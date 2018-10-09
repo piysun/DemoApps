@@ -14,10 +14,13 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "cors": "^2.8.4",
+    "handlebars": "^4.0.12",
     "lodash": "^4.17.10",
     "mongoose": "^5.2.8",
+    "nodemailer": "^4.6.8",
     "nodemon": "^1.18.3",
     "q": "^1.5.1",
+    "randomstring": "^1.1.5",
     "request": "^2.88.0"
   }
 }

@@ -21,7 +21,6 @@ const Stock_Info = mongoose.Schema({
     stock_PushMail: { type: Boolean, require: true },
     stock_Profit: { type: String, require: true },
     stock_Sell: { type: Boolean, require: true }
-
 });
 const User_InfoTB = mongoose.model('User_InfoTB', User_Info);
 const Stock_InfoTB = mongoose.model('Stock_InfoTB', Stock_Info);

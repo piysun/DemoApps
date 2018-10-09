@@ -5,7 +5,7 @@ var cors = require('cors');
 var app = express();
 const route = require('./router/router');
 
-// const mail = require('./mail/mail');
+const mail = require('./mail/mail');
 // const user = require('./route/userRouter');
 mongoose.connect('mongodb://localhost/BSEDB');
 
