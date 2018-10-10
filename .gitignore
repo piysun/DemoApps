@@ -2,4 +2,5 @@
 # http://git-scm.com/docs/gitignore
 
 
+/MarketWatch/Node_bse/node_modules/
 #plugins/
