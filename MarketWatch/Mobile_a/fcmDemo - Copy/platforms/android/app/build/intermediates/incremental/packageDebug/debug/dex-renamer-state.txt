@@ -1,0 +1,4 @@
+#Wed Sep 12 10:15:49 IST 2018
+base.0=D\:\\KPIT\\poc\\AWS\\DemoApps\\MarketWatch\\Mobile_a\\fcmDemo - Copy\\platforms\\android\\app\\build\\intermediates\\transforms\\dexMerger\\debug\\0
+path.0=classes.dex
+renamed.0=classes.dex
