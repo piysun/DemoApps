@@ -45,8 +45,8 @@ router.get('/sendMail', function (req, res) {
         mailOptions = {
             to: req.query.to,
             subject: "Please confirm your Email account",
-            html: htmlToSend
-            // html: "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
+            // html: htmlToSend
+            html: "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
         }
 
         console.log(link);
@@ -95,8 +95,8 @@ var sendNotificationMail = async function (getUserDeatail, symbol, ltp) {
         mailOptions = {
             to: getUserDeatail.user_Email,
             subject: "Your Target Completeed Plese Check your stock",
-            html: htmlToSend
-            // html: "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
+            // html: htmlToSend
+            html: "Hello,<br> Please Click on the link to verify your email.<br><a href=" + link + ">Click here to verify</a>"
         }
 
         // console.log(link);
@@ -114,7 +114,6 @@ var sendNotificationMail = async function (getUserDeatail, symbol, ltp) {
 
 }
 module.exports = {
-
-    router: router,
     sendNotificationMail: sendNotificationMail
 };
+module.exports = router;

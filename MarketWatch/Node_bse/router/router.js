@@ -79,7 +79,7 @@ var checkTarget = async function () {
             //Below loop will check for the target hit or not
             targetRecords.forEach(async function (targetRecordObject) {
 
-                 console.log("targetRecordObject.stock_TargetPrice: " + targetRecordObject);
+                console.log("targetRecordObject.stock_TargetPrice: " + targetRecordObject);
                 // console.log("stockObject.ltP: " + stockObject.ltP);
                 if (targetRecordObject.stock_TargetPrice <= stockObject.ltP) {
                     console.log("true fun");
@@ -97,11 +97,11 @@ var checkTarget = async function () {
     } catch (error) {
         console.log("error", error);
     } //end of try...catch block
-    setTimeout(checkTarget, 10 * 1000);
+    //  setTimeout(checkTarget, 10 * 1000);
     // }
     // 
 } //end of checkTarget function
-setTimeout(checkTarget, 10 * 1000);
+//setTimeout(checkTarget, 10 * 1000);
 // var checkTrigger = async function () {
 
 //     try {
@@ -197,6 +197,35 @@ router.post('/getDataByUserid', (req, res, next) => {
     })
 })
 
+router.post('/getUseridByEmailid', (req, res) => {
+
+    var query = {
+        user_Email: req.body.user_Email
+    }
+    User_InfoTB.find(query, function (err, items) {
+        if (err) {
+
+            res.send(err);
+        }
+        else {
+
+            if (items.length > 0) {
+
+                res.send(items);
+            } else {
+
+                var responseObject = {
+                    'message': 'User record not found.'
+                }; // end of responseObject object
+
+                res.status(404);
+                res.send(responseObject);
+
+            } //end of if...else condition checking for length of result
+        }
+    })
+})
+
 router.post('/insertStockRecord', (req, res, next) => {
     let Stock_Record = new Stock_InfoTB({
         user_Id: req.body.user_Id,
@@ -225,7 +254,6 @@ router.get('/testing_get_route', function (req, res, next) {
     User_InfoTB.find(function (err, items) {
         if (err) {
             res.json(err);
-
         }
         else {
             res.json(items)

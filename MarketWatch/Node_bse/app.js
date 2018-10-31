@@ -26,7 +26,7 @@ app.use(cors());
 app.use(bodyparser.json());
 
 //
-app.use('/api', route);
+app.use('/api', route, mail);
 //app.use('/api', route);
 
 app.get('/', (req, res) => {
