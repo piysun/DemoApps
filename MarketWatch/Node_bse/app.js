@@ -5,7 +5,7 @@ var cors = require('cors');
 var app = express();
 const route = require('./router/router');
 
-const mail = require('./mail/mail');
+const mail = require('./mail/mail')(app);
 // const user = require('./route/userRouter');
 mongoose.connect('mongodb://localhost/BSEDB');
 
@@ -26,7 +26,7 @@ app.use(cors());
 app.use(bodyparser.json());
 
 //
-app.use('/api', route, mail);
+app.use('/api', route);
 //app.use('/api', route);
 
 app.get('/', (req, res) => {
