@@ -10,6 +10,7 @@ const Stock_InfoTB = require('../addItem/addRecord').Stock_InfoTB;
 var url = "https://www.nseindia.com/live_market/dynaContent/live_watch/stock_watch/foSecStockWatch.json"
 var q = require("q");
 var mail = require('../mail/mail');
+var smtpFile = require("../mail/smtp");
 
 router.post('/insert_list', (req, res, next) => {
 
@@ -89,7 +90,8 @@ var checkTarget = async function () {
                     var getUserDeatail = await User_InfoTB.find(UserQuery);
 
                     //send mail using userID, symbol, ltp
-                    mail.sendNotificationMail(getUserDeatail, targetRecordObject.stock_Symbol, stockObject.ltP);
+                    smtpFile.sendNotificationMail(getUserDeatail, targetRecordObject.stock_Symbol, stockObject.ltP);
+                    // mail.sendNotificationMail(getUserDeatail, targetRecordObject.stock_Symbol, stockObject.ltP);
                     //set PushMail to true update
                 } //end of if condition checking for target hit or not
             }); //end of forEach loop iterating for targetRecords
